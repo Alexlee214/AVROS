@@ -10,10 +10,6 @@ typedef struct modeTree{
   byte modeID;
   byte* prevMode;
 };
-
-typedef struct modeNode{
-  
-};
  
 void setup() {
   buildMenuStruct();
