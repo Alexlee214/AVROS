@@ -135,6 +135,7 @@ void modeAction(){
       *gameOver = false;
       *gamePause = false;
       *genNewPoint = false;
+      buttonPressed = false;
       score = 0;
       myPoint -> xCoor = 0;
       myPoint -> yCoor = 0;
@@ -144,7 +145,8 @@ void modeAction(){
         snake[countSnake].xCoor = 21;
         snake[countSnake].yCoor = 24 + countSnake;
       }
-      buttonPressed = false;
+      myPoint -> xCoor = 0;
+      myPoint -> yCoor = 0;
     }
   }
 }
@@ -203,16 +205,6 @@ bool genRandomPoint(bool* flag){
     pointRegisters -> yCoor = random(2, 33);
     *flag = false;
     
-    //score growth is proportional to the score
-    //score = score + map(score, 0, 600, 2, 30);
-    if(score <= 10) score = score + 3;
-    else if(score <= 30) score = score + 10;
-    else if(score <= 100) score = score + 25;
-    else if(score <= 250) score = score + 50;
-    else if(score <= 500) score = score + 90;
-    else if(score <= 1000) score = score + 150;
-    else if(score <= 1500) score = score + 250;
-    else score = score + 500;
     return true;
   }
 
@@ -225,7 +217,7 @@ bool genRandomPoint(bool* flag){
 
 
 
-//determines if point is acquired, and increments point is it is
+//determines if point is acquired, and increments point if it is
 //parameter: the location of the point as a point pointer
 //returns true is point is acquired, false otherwise
 bool checkRandomPoint(point* myPoint){
@@ -234,6 +226,18 @@ bool checkRandomPoint(point* myPoint){
     snake[snakeLength].xCoor = snake[snakeLength - 1].xCoor;
     snake[snakeLength].yCoor = snake[snakeLength - 1].yCoor;
     snakeLength = snakeLength + 1;
+
+    //score growth is proportional to the score
+    //score = score + map(score, 0, 600, 2, 30);
+    if(score <= 10) score = score + 3;
+    else if(score <= 30) score = score + 10;
+    else if(score <= 100) score = score + 25;
+    else if(score <= 250) score = score + 50;
+    else if(score <= 500) score = score + 90;
+    else if(score <= 1000) score = score + 150;
+    else if(score <= 1500) score = score + 250;
+    else score = score + 500;
+    
     return true;
   }
 
